@@ -59,7 +59,7 @@ public class JSONNumber
 
   public String
     toString ()
-  {
+  { 
     return number;
   }// toString()
 

@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class JSONArray
@@ -164,13 +165,30 @@ public class JSONArray
     ArrayList<T> results = new ArrayList<T> ();
     JSONObject tempObj;
     // Needs to be an array of objects
+    int compResult;
+    JSONVal valToCompare;
     for (int i = 0; i < this.size (); i++)
       {
         // For each object
-        if (this.array.get (i).type ().equals ("Object"))
+        if (this.array.get (i).type ().equals ("Object")
+            && (valToCompare = (tempObj = ((JSONObject) this.array.get (i))).get (key)) != null)
           {
-            if ((tempObj = ((JSONObject) this.array.get (i))).get (key)
-                                                             .compareTo (val) == 0)
+            
+            if (valToCompare.type ().equals ("Number"))
+              {
+                compResult = ((JSONNumber) valToCompare).compareTo (Integer.parseInt (val.toString ()));
+              } // if
+            else if (valToCompare.type ().equals ("Constant"))
+              {
+                compResult = ((JSONConstant) valToCompare).compareTo (val);
+              } // else if
+            else
+              {
+                compResult = valToCompare.compareTo (val);
+              } // else
+            if ((comparison.equals ("=") && compResult == 0)
+                || (comparison.equals ("<") && compResult < 0)
+                || (comparison.equals (">") && compResult > 0))
               {
                 // The object has a key-value pair that matches
                 results.add ((T) tempObj.get (returnKey));

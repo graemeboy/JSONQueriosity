@@ -45,9 +45,8 @@ public class JSONConstant
     return "Constant";
   } // type()
 
-  public <T>
-    int
-    compareTo (T val)
+  public int
+    compareTo (boolean val)
   {
     // This is somewhat awkward to do.
     if (this.get () == val)
@@ -58,5 +57,20 @@ public class JSONConstant
       {
         return -1;
       }
+  }
+
+  public int
+    compareTo (String val)
+  {
+    // This is somewhat awkward to do.
+
+    if ((val.equals ("true") && this.isTrue && this.isNull == false)
+        || (val.equals ("false") && this.isTrue == false && this.isNull == false)
+        || (val.equals ("null") && this.isNull))
+      {
+        return 0;
+      } // else if
+
+    return -1;
   }
 } // class JSONSpecial

@@ -19,11 +19,11 @@ public class JSONExpt
         + "{ \"name\" : \"Vassar College\", \"type\": \"Liberal Arts\", \"numStudents\": 2477 }, "
         + "{ \"name\" : \"Middlebury College\", \"type\": \"Liberal Arts\", \"numStudents\": 2499 }, "
         + "{ \"name\" : \"Wesleyan University\", \"type\": \"Liberal Arts\", \"numStudents\": 3262 }, "
-        + "{ \"name\" : \"Harvard University\", \"type\": \"University\", \"numStudents\": 28147 }, "
-        + "{ \"name\" : \"Stanford University\", \"type\": \"University\", \"numStudents\": 15877 }, "
-        + "{ \"name\" : \"University of Chicago\", \"type\": \"University\", \"numStudents\": 15245 }, "
-        + "{ \"name\" : \"University of Iowa\", \"type\": \"University\", \"numStudents\": 31065 }, "
-        + "{ \"name\": \"Cornell University\", \"type\": \"University\", \"numStudents\": 21000 } ] }";
+        + "{ \"name\" : \"Harvard University\", \"type\": \"University\", \"numStudents\": 28147, \"ivyLeague\": true }, "
+        + "{ \"name\" : \"Stanford University\", \"type\": \"University\", \"numStudents\": 15877, \"ivyLeague\": false }, "
+        + "{ \"name\" : \"University of Chicago\", \"type\": \"University\", \"numStudents\": 15245, \"ivyLeague\": false }, "
+        + "{ \"name\" : \"University of Iowa\", \"type\": \"University\", \"numStudents\": 31065, \"ivyLeague\": false }, "
+        + "{ \"name\": \"Cornell University\", \"type\": \"University\", \"numStudents\": 21000, \"ivyLeague\": true } ] }";
     
     
     JSONDecoder queryDecoder = new JSONDecoder (queryJSON);
@@ -40,9 +40,17 @@ public class JSONExpt
 //    pen.println("* Universities are: * \n" + universities);
 //    pen.println("* Liberal Arts Colleges are: * \n" + liberalArts);
     
-    pen.println("**** Natural query ****");
-    pen.println(queryDecoder.query ("select name from schools where type = 'Liberal Arts'"));
-    pen.println(queryDecoder.query ("select name from schools where numStudents = 2000"));
+    pen.println("* Experimenting with the Query Language\n");
+    String q1 = ("select name from schools where type = 'Liberal Arts'");
+    pen.println("Query 1: " + q1);
+    pen.println("Result: " + queryDecoder.query (q1));
+    String q2 = ("select name from schools where numStudents < 2000");
+    pen.println("Query 2: " + q2);
+    pen.println("Result: " + queryDecoder.query (q2));
+    String q3 = ("select name from schools where ivyLeague = true");
+    pen.println("Query 3: " + q3);
+    pen.println(queryDecoder.query (q3));
+    pen.println("\n");
     
 //    pen.println("* Small Colleges are: * \n" + small);
 //    pen.println("* Big Universities are: * \n" + big);
@@ -50,7 +58,7 @@ public class JSONExpt
 //    pen.println("* Liberal Arts College Names are: * \n" + liberalNames);
 //    pen.println("* Liberal Arts College Sizes are: * \n" + liberalSizes);
     
-    pen.println("\n** Experimenting with Getting Values from Complex Objects ** \n");
+    //pen.println("\n** Experimenting with Getting Values from Complex Objects ** \n");
     String json = "{\n\"person\":\n{\"first\" :\n \"Clark\" , \"last\" : \"Kent\","
                   + "\"age\":23,\"class year\":2014, \"male\":true,"
                   + "\"friends\": [ \"Sam\",\"Joe\", \"Lilly\" ] , \"gpa\": 3.92,\"hasCat\": true, \"crimes\": 0 }}";

@@ -276,14 +276,15 @@ public class JSONDecoder
       {
 
         int i = 7;
-        String val = args[i].substring (1, args[i].length ());
+        
         String temp;
-
+        String val;
+        
         // 'Liberal Arts' => args[7] = 'Liberal, args[8] = Arts'
         // System.out.println(args[7]);
         if (args[i].charAt (0) == '\'')
           {
-
+            val = args[i].substring (1, args[i].length ());
             // The use is checking a string, which can have multiple words.
             // E.g. 'Liberal Arts'
             // Go through each subsequent word, and check to see whether that
@@ -301,8 +302,12 @@ public class JSONDecoder
             val += ' ' + temp.substring (0, temp.length () - 1);
 
           } // if
-
-        System.out.println (val);
+        else
+          {
+            val = args[7];
+          }
+        
+//        System.out.println("Val: " + val + " and comparator is " + args[6]);
         return ((JSONArray) this.obj.get (args[3])).select (args[1], args[6],
                                                             args[5], val)
                                                    .toString ();
