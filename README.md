@@ -95,7 +95,7 @@ Which returns:
 [Grinnell College, Carlton College, Vassar College, Middlebury College, Wesleyan University]
 ```
 
-Finally, you can also use constant, e.g., remind yourself whether Cornell is in the Ivy League
+Finally, you can also use a constant (true, false, null), e.g., remind yourself whether Cornell is in the Ivy League
 
 ```java
 queryDecoder.query("select name from schools where numStudents < 5000");
@@ -130,7 +130,7 @@ select name from schools where ivyLeague = true
 ```
 
 Which returns:
-```
+```javascript
 [Harvard University, Cornell University, Dartmouth College, Brown University, Princeton University, Columbia University, Yale University]
 
 ```
