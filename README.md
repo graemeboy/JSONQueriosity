@@ -5,31 +5,86 @@ A Java library for encoding and decoding JSON structures. It is robust, can work
 
 JSON Querying Language
 ----------------------
-JSONLibrary contains a small querying language. This is how it can be used.
+JSONLibrary contains a small querying language, similar to SQL. This is how it can be used.
 
 Say we have a small dataset in our JSON String, e.g.:
 
 ```javascript
-String eduInstitutions = "{ \"schools\": [ 
-    { \"name\" : \"Grinnell College\", \"type\": \"Liberal Arts\", \"numStudents\": 1655 } , 
-    { \"name\" : \"Carlton College\", \"type\": \"Liberal Arts\", \"numStudents\": 2018 }, 
-    { \"name\" : \"Vassar College\", \"type\": \"Liberal Arts\", \"numStudents\": 2477 }, 
-    { \"name\" : \"Middlebury College\", \"type\": \"Liberal Arts\", \"numStudents\": 2499 }, 
-    { \"name\" : \"Wesleyan University\", \"type\": \"Liberal Arts\", \"numStudents\": 3262 }, 
-    { \"name\" : \"Harvard University\", \"type\": \"University\", \"numStudents\": 28147 }, 
-    { \"name\" : \"Stanford University\", \"type\": \"University\", \"numStudents\": 15877 }, 
-    { \"name\" : \"University of Chicago\", \"type\": \"University\", \"numStudents\": 15245 }, 
-    { \"name\" : \"University of Iowa\", \"type\": \"University\", \"numStudents\": 31065 }, 
-    { \"name\": \"Cornell University\", \"type\": \"University\", \"numStudents\": 21000 } 
-] }";
+String eduInstitutions = "{
+    "schools": [
+        {
+            "name": "Grinnell College",
+            "type": "Liberal Arts",
+            "numStudents": 1655,
+            "ivyLeague": false
+        },
+        {
+            "name": "Carlton College",
+            "type": "Liberal Arts",
+            "numStudents": 2018,
+            "ivyLeague": false
+        },
+        {
+            "name": "Vassar College",
+            "type": "Liberal Arts",
+            "numStudents": 2477,
+            "ivyLeague": false
+        },
+        {
+            "name": "Middlebury College",
+            "type": "Liberal Arts",
+            "numStudents": 2499,
+            "ivyLeague": false
+        },
+        {
+            "name": "Wesleyan University",
+            "type": "Liberal Arts",
+            "numStudents": 3262,
+            "ivyLeague": false
+        },
+        {
+            "name": "Harvard University",
+            "type": "University",
+            "numStudents": 28147,
+            "ivyLeague": true
+        },
+        {
+            "name": "Stanford University",
+            "type": "University",
+            "numStudents": 15877,
+            "ivyLeague": false
+        }
+    ]
+}";
 ```
         
-Instantiate the decoder:
+Instantiate the decoder, and decode the String:
 
 ```java
 JSONDecoder queryDecoder = new JSONDecoder (eduInstitutions);
+queryDecoder.jsonDecode ();
 ```
 
+Query the JSONDecoder using the query language:
+
+```java
+queryDecoder.query("select numStudents from schools where type = 'Liberal Arts'");
+```
+
+This returns:
+
+```javascript
+[1655, 2018, 2477, 2499, 3262]
+```
+
+You can also use comparitors, e.g.:
+
+```java
+queryDecoder.query("select name from schools where numStudents < 5000");
+```
+
+Accessing the Raw Objects
+--------------------------
 Create an object that we can use to query with
 ```java
 JSONObject queryObj = queryDecoder.jsonDecode ();

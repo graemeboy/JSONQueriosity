@@ -30,7 +30,7 @@ public class JSONExpt
         // Our dataset is now a string called jsonContent!
         // Let's decode it into a Java object.
         JSONDecoder queryDecoder = new JSONDecoder (jsonContent);
-        JSONObject queryObj = queryDecoder.jsonDecode ();
+        queryDecoder.jsonDecode ();
 
         // Let's do some querying on the dataset.
         pen.println ("* Experimenting with the Query Language\n");
