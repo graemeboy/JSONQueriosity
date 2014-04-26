@@ -107,6 +107,34 @@ Which returns:
 [true]
 ```
 
+Using the Queriosity User Interface (QUI)
+--------------------------
+
+We have built in a small user interface for querying datasets. To use it, simply instantiate the user interface class, like this:
+
+```java
+new QueryUserInterface (queryDecoder);
+```
+
+This will open an input stream for users to write query statements. This will take place in a dialog:
+
+```
+* Welcome to the Queriosity User Interface (QUI) *
+Type in any select query, and you will receive the filtered data. Type 'end' to quit.
+```
+
+You can simple type in your query, and receive the data result:
+
+```
+select name from schools where ivyLeague = true
+```
+
+Which returns:
+```
+[Harvard University, Cornell University, Dartmouth College, Brown University, Princeton University, Columbia University, Yale University]
+
+```
+
 Accessing the Raw Objects
 --------------------------
 Create an object that we can use to query with
