@@ -1,12 +1,11 @@
 public class JSONConstant
-    extends
-      JSONVal
+    extends JSONVal
 {
 
   boolean isTrue = false;
   boolean isNull = false;
 
-  public JSONConstant (char specialIn)
+  public JSONConstant(char specialIn)
   {
     if (specialIn == 't')
       {
@@ -18,8 +17,7 @@ public class JSONConstant
       } // else if
   } // JSONSpecial
 
-  public Boolean
-    get ()
+  public Boolean get()
   {
     if (isNull)
       {
@@ -29,27 +27,24 @@ public class JSONConstant
     return this.isTrue;
   } // get ()
 
-  public String
-    toString ()
+  public String toString()
   {
     if (isNull)
       {
         return "null";
       } // if
-    return String.valueOf (this.isTrue);
+    return String.valueOf(this.isTrue);
   } // toString ()
 
-  public boolean
-    isConstant ()
+  public boolean isConstant()
   {
     return true;
   } // type()
 
-  public int
-    compareTo (boolean val)
+  public int compareTo(boolean val)
   {
     // This is somewhat awkward to do.
-    if (this.get () == val)
+    if (this.get() == val)
       {
         return 0;
       }
@@ -59,18 +54,18 @@ public class JSONConstant
       }
   }
 
-  public int
-    compareTo (String val)
+  public <T> int compareTo(T val)
   {
     // This is somewhat awkward to do.
-
-    if ((val.equals ("true") && this.isTrue && this.isNull == false)
-        || (val.equals ("false") && this.isTrue == false && this.isNull == false)
-        || (val.equals ("null") && this.isNull))
-      {
-        return 0;
-      } // else if
-
-    return -1;
+    return val.toString().
+        compareTo(this.toString());
+    //    if ((val.equals ("true") && this.isTrue && this.isNull == false)
+    //        || (val.equals ("false") && this.isTrue == false && this.isNull == false)
+    //        || (val.equals ("null") && this.isNull))
+    //      {
+    //        return 0;
+    //      } // else if
+    //
+    //    return -1;
   }
 } // class JSONSpecial

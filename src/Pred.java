@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Comparator;
 
 /**
@@ -151,7 +152,8 @@ public class Pred
         {
           // Assume parameter is a JSONObject. Find the value corresponding 
           // to the given key and compare it to the given value 
-          return value.compareTo(((JSONObject) object).get(key)) == 0;
+          JSONVal temp = ((JSONObject) object).get(key);
+          return ((temp != null) && (value.compareTo(temp) == 0));
         }// test
       };// new Predicate(T)
   }//equal(String, JSONVal)
@@ -166,7 +168,12 @@ public class Pred
           @Override
           public boolean test(T object)
           {
-            return value.compareTo(((JSONObject) object).get(key)) < 0;
+            JSONVal temp = ((JSONObject) object).get(key);
+            System.out.println("object greater is " + temp.toString());
+            if (temp.isNumber())
+              return ((JSONNumber)temp).compareTo(value) > 0;
+            return ((temp != null) && (temp.compareTo(value) > 0));
+            //return value.compareTo(((JSONObject) object).get(key)) > 0;
           }// test
         };// new Predicate(T)
   }//greater(String, JSONVal)
@@ -181,7 +188,19 @@ public class Pred
           @Override
           public boolean test(T object)
           {
-            return value.compareTo(((JSONObject) object).get(key)) > 0;
+            JSONVal temp = ((JSONObject) object).get(key);
+            if (temp.isNumber())
+              {
+                try
+                  {
+                    return ((JSONNumber)temp).compareTo(new BigDecimal(value.toString()))  < 0;
+                  }
+                catch (Exception e)
+                  {
+                    return false;
+                  }
+              }// if number
+            return ((temp != null) && (temp.compareTo(value) < 0));
           }// test
         };// new Predicate(T)
   }//smaller(String, JSONVal)

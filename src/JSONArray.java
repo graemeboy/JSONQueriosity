@@ -277,9 +277,9 @@ public class JSONArray
     Iterator it = intermediateResult.iterator();
     ArrayList<JSONVal> result = new ArrayList<> ();
     // Extract the values of the returnKey from the filtered array
-    while (it.hasNext ())
+    while (it.hasNext())
       {
-        result.add (((JSONObject) (it.next ())).get (returnKey));
+        result.add (((JSONObject) (it.next())).get(returnKey));
       }// while hasNext
     return result;
   }// selsectFilter(String, String, String, T)
