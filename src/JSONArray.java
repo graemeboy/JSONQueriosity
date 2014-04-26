@@ -69,7 +69,7 @@ public class JSONArray
     for (int i = 0; i < this.size(); i++)
       {
         // For each object
-        if (this.array.get(i).type().equals("Object"))
+        if (this.array.get(i).isObject())
           {
             if ((tempObj = ((JSONObject) this.array.get(i))).get(key)
                                                             .compareTo(val) == 0)

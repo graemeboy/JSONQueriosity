@@ -30,7 +30,7 @@ public class JSONExpt
         // Our dataset is now a string called jsonContent!
         // Let's decode it into a Java object.
         JSONDecoder queryDecoder = new JSONDecoder (jsonContent);
-        JSONObject queryObj = queryDecoder.jsonDecode ();
+        queryDecoder.jsonDecode ();
 
         // Let's do some querying on the dataset.
         pen.println ("* Experimenting with the Query Language\n");
@@ -54,6 +54,9 @@ public class JSONExpt
         String q5 = ("select ivyLeague from schools where name = 'Stanford University'");
         pen.println ("Query 5: " + q5);
         pen.println (queryDecoder.query (q5));
+        String q6 = ("select name from schools where type = 'University'");
+        pen.println ("Query 6: " + q6);
+        pen.println (queryDecoder.query (q6));
         pen.println ("\n");
 
         // Now, let's give the user a turn.

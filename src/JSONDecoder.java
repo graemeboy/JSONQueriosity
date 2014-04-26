@@ -259,15 +259,14 @@ public class JSONDecoder
    * 
    * @param queryIn
    * @return
-   * @throws Exception 
+   * @throws Exception
    */
-  public String query(String queryIn)
-    throws Exception
-  {
 
-    // ((JSONArray)queryObj.get("schools")).select("name", "equals", "type",
-    // "Liberal Arts").toString ();
-    String[] args = queryIn.split(" ");
+  public String
+    query (String queryIn)
+      throws Exception
+  {
+    String[] args = queryIn.split (" ");
 
     if (args[0].equalsIgnoreCase("select"))
       {
@@ -277,11 +276,10 @@ public class JSONDecoder
         String temp = "";
         String val;
 
-        // 'Liberal Arts' => args[7] = 'Liberal, args[8] = Arts'
-        // System.out.println(args[7]);
-        if (args[i].charAt(0) == '\'')
+
+        if (args[i].charAt (0) == '\'')
           {
-            val = args[i].substring(1, args[i].length());
+
             // The use is checking a string, which can have multiple words.
             // E.g. 'Liberal Arts'
             // Go through each subsequent word, and check to see whether that
@@ -290,38 +288,49 @@ public class JSONDecoder
             // val variable.
             // Each time we do this, we must add the word, without the quotation
             // mark, to val.
-
-            while ((++i < args.length)
-                   && (temp = args[i]).charAt(temp.length() - 1) != '\'')
+            // If it's just one word, then take that word without the
+            // quotations.
+            if (args[i].charAt (args[i].length () - 1) == '\'')
               {
-                // Concatenate the values, and add a space, because they are
-                // seperate words.
-                val += ' ' + temp;
-              } // while
-            val += ' ' + temp.substring(0, temp.length() - 1);
+                val = args[i].substring (1, args[i].length () - 1);
+              } // if
+            else
+              {
+                // If it's two words, add the first word without the quotations,
+                // and the add the others, until the last word, and take that
+                // without quotation.
+                val = args[i].substring (1, args[i].length ());
 
+                while ((++i < args.length)
+                       && (temp = args[i]).charAt (temp.length () - 1) != '\'')
+                  {
+                    // Concatenate the values, and add a space, because they are
+                    // seperate words.
+                    val += ' ' + temp;
+                  } // while
+
+                val += ' ' + temp.substring (0, temp.length () - 1);
+              } // else
           } // if
         else
           {
             val = args[7];
           }
 
-        // System.out.println("Val: " + val + " and comparator is " + args[6]);
-
         JSONVal unknown;
-        if (val.equals("null") || val.equals("true") || val.equals("false"))
-          unknown = new JSONConstant(val.charAt(0));
-        else if (Character.isDigit(new Character(val.charAt(0)))
-                 || val.charAt(0) == '-')
-          unknown = new JSONNumber(val);
+        if (val.equals ("null") || val.equals ("true") || val.equals ("false"))
+          unknown = new JSONConstant (val.charAt (0));
+        else if (Character.isDigit (new Character (val.charAt (0)))
+                 || val.charAt (0) == '-')
+          unknown = new JSONNumber (val);
         else
-          unknown = new JSONString(val);
+          unknown = new JSONString (val);
 
-        return ((JSONArray) this.obj.get(args[3])).selectFilter(args[1],
-                                                                args[6],
-                                                                args[5],
-                                                                unknown)
-                                                  .toString();
+        return ((JSONArray) this.obj.get (args[3])).selectFilter (args[1],
+                                                                  args[6],
+                                                                  args[5],
+                                                                  unknown)
+                                                   .toString ();
       } // if
 
     return "No results";
