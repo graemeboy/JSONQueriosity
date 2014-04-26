@@ -93,7 +93,7 @@ Which returns:
 
 ```javascript
 [Grinnell College, Carlton College, Vassar College, Middlebury College, Wesleyan University]
-```javascript
+```
 
 Finally, you can also use constant, e.g., remind yourself whether Cornell is in the Ivy League
 
@@ -105,7 +105,7 @@ Which returns:
 
 ```javascript
 [true]
-```javascript
+```
 
 Accessing the Raw Objects
 --------------------------
