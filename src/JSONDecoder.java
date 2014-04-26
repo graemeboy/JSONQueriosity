@@ -310,7 +310,7 @@ public class JSONDecoder
           }
         
 //        System.out.println("Val: " + val + " and comparator is " + args[6]);
-        return ((JSONArray) this.obj.get (args[3])).select (args[1], args[6],
+        return ((JSONArray) this.obj.get (args[3])).selectFilter (args[1], args[6],
                                                             args[5], val)
                                                    .toString ();
       } // if

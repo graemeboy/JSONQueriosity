@@ -146,33 +146,38 @@ public class JSONArray
 
   /**
    * Make an array of JSONVals for which the predicate holds
-   *
-   * @param pred, a Predicate
+   * 
+   * @param pred
+   *          , a Predicate
    * @pre pred takes a single argument - a JSONObject
    */
-  public <T> JSONArray filter(Predicate<T> pred)
+  public <T>
+    JSONArray
+    filter (Predicate<T> pred)
   {
     // Make an array where objects that pass the predicate will be placed
-    JSONArray result = new JSONArray();
-    // Make a filtered iterator for this 
-    FilteredIterator<JSONVal> it = new FilteredIterator(this.iterator(), pred);
+    JSONArray result = new JSONArray ();
+    // Make a filtered iterator for this
+    FilteredIterator<JSONVal> it = new FilteredIterator (this.iterator (), pred);
     // Go through this JSONArray and add elements that pass
-    while (it.hasNext())
+    while (it.hasNext ())
       {
-        result.add(it.next());
+        result.add (it.next ());
       }// while hasNext
     return result;
   }// filter
-  
+
   /**
-   * Make an iterator 
+   * Make an iterator
    * 
-   * @return an iterator of this.array 
+   * @return an iterator of this.array
    */
-  public Iterator iterator()
+  public Iterator
+    iterator ()
   {
-    return this.array.iterator();
+    return this.array.iterator ();
   }// iterator
+
   /**
    * function Select, returns the value of a given key, if it satisfies a
    * comparison. E.g. select("name", "equals", "Graeme") would return my name in
@@ -184,7 +189,8 @@ public class JSONArray
    * @param key
    * @param comparison
    * @param return key
-   * @param val what we are comparing to
+   * @param val
+   *          what we are comparing to
    * @return
    */
   @SuppressWarnings("unchecked")
@@ -204,8 +210,8 @@ public class JSONArray
         if (this.array.get (i).type ().equals ("Object")
             && (valToCompare = (tempObj = ((JSONObject) this.array.get (i))).get (key)) != null)
           {
-            
-            if (valToCompare.type().equals("Number"))
+
+            if (valToCompare.type ().equals ("Number"))
               {
                 compResult = ((JSONNumber) valToCompare).compareTo (Integer.parseInt (val.toString ()));
               } // if
@@ -230,51 +236,58 @@ public class JSONArray
   }
 
   /**
-   * Make an array of values of the returnKey for each JSONObject
-   * in the array that satisfies the comparison between the value 
-   * of the key parameter and the parameter val
-   * @param returnKey, its value might be in the returned array 
-   * @param comparison, indicates how val and the value of key will be compared
-   * @param key, the key whose value gets compared
+   * Make an array of values of the returnKey for each JSONObject in the array
+   * that satisfies the comparison between the value of the key parameter and
+   * the parameter val
+   * 
+   * @param returnKey
+   *          , its value might be in the returned array
+   * @param comparison
+   *          , indicates how val and the value of key will be compared
+   * @param key
+   *          , the key whose value gets compared
    * @param val
    * @pre comparison must be "=", "<" or ">"
    * @both key and returnKey must be in each member-object
-   * @return an array of values of the returnKey for objects that satisfy the comparison
+   * @return an array of values of the returnKey for objects that satisfy the
+   *         comparison
    * @throws Exception
    */
-  public ArrayList<JSONVal> selectFilter(String returnKey, String comparison,
-                                       String key, JSONVal val)
-    throws Exception
-{
-  // Make a new list where values will be put
-  JSONArray intermediateResult = new JSONArray();
-  char comparChar = comparison.charAt(0);
-  // Filter the this into the array
-  switch(comparChar)
+  public ArrayList<JSONVal>
+    selectFilter (String returnKey, String comparison, String key, JSONVal val)
+      throws Exception
   {
-    case '=':
-      intermediateResult = this.filter(Pred.equal(key, val));
-      break;
-    case '>':
-      intermediateResult = this.filter(Pred.greater(key, val));
-      break;
-    case '<':
-      intermediateResult = this.filter(Pred.smaller(key, val));
-      break;
-    default:
-      throw new Exception("Incorrectly formatted input: expected =, > or <, given " + comparison);
-  }// switch
-  
-  Iterator it = this.iterator();
-  ArrayList<JSONVal> result = new ArrayList<>();
-  // Extract the values of the returnKey from the filtered array
-  while (it.hasNext())
-    {
-      result.add(((JSONObject)(it.next())).get(returnKey));
-    }// while hasNext
-  return result;
-}// selsectFilter(String, String, String, T)
-  
+    // Make a new list where values will be put
+    JSONArray intermediateResult = new JSONArray ();
+    char comparChar = comparison.charAt (0);
+    // Filter the this into the array
+    switch (comparChar)
+      {
+        case '=':
+          intermediateResult = this.filter (Pred.equal (key, val));
+          break;
+        case '>':
+          intermediateResult = this.filter (Pred.greater (key, val));
+          break;
+        case '<':
+          intermediateResult = this.filter (Pred.smaller (key, val));
+          break;
+        default:
+          throw new Exception (
+                               "Incorrectly formatted input: expected =, > or <, given "
+                                   + comparison);
+      }// switch
+
+    Iterator it = this.iterator ();
+    ArrayList<JSONVal> result = new ArrayList<> ();
+    // Extract the values of the returnKey from the filtered array
+    while (it.hasNext ())
+      {
+        result.add (((JSONObject) (it.next ())).get (returnKey));
+      }// while hasNext
+    return result;
+  }// selsectFilter(String, String, String, T)
+
   /**
    * Returns the element at i
    * 
@@ -287,10 +300,10 @@ public class JSONArray
     return this.array.get (i);
   }
 
-  public String
-    type ()
+  public boolean
+    isConstant ()
   {
-    return "Array";
+    return true;
   } // type()
 
   public int

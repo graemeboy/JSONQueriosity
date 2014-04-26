@@ -39,10 +39,10 @@ public class JSONConstant
     return String.valueOf (this.isTrue);
   } // toString ()
 
-  public String
-    type ()
+  public boolean
+    isConstant ()
   {
-    return "Constant";
+    return true;
   } // type()
 
   public int

@@ -22,10 +22,10 @@ public class JSONString
     return this.string;
   }
 
-  public String
-    type ()
+  public boolean
+    isString ()
   {
-    return "String";
+    return true;
   } // type()
 
   public int
