@@ -2,8 +2,10 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 
 /**
- * Helpers for working with predicates. From Exam 2 Problem 2 by Vasilisa
- * Bashlovkina and Samuel A. Rebelsky
+ * Helpers for working with predicates.
+ *  From Exam 2 Problem 2 
+ * @author Samuel A. Rebelsky
+ * @author Vasilisa Bashlovkina
  */
 public class Pred
 {

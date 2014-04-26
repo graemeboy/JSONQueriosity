@@ -10,31 +10,49 @@ public class JSONVal
   // +------------------+---------------------------------------------------------
   // | Observer Methods |
   // +------------------+
-
+  /**
+   * Determine whether this is a JSONNumber
+   */
   public boolean isNumber()
   {
     return false;
   } // isNumber()
 
+  /**
+   * Determine whether this is a JSONString
+   */
   public boolean isString()
   {
     return false;
   } // isString()
 
+  /**
+   * Determine whether this is a JSONObject
+   */
   public boolean isObject()
   {
     return false;
   } // isObject
 
+  /**
+   * Determine whether this is a JSONArray
+   */
   public boolean isArray()
   {
     return false;
   } // isArray
 
+  /**
+   * Determine whether this is a JSONConstant
+   */
   public boolean isConstant()
   {
     return false;
   } // isConstant()
+
+  // +------------------+---------------------------------------------------------
+  // | Standard Methods |
+  // +------------------+
 
   /**
    * Compare this to another JSONValue.
