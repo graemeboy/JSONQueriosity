@@ -97,41 +97,6 @@ public class Pred
       }; // new Predicate<T>
   } // or(Predicate<T>, Predicate<T>)
 
-  //  /**
-  //   * Returns a predicate that holds if val is equal to otherVal
-  //   * 
-  //   * @param otherValintermediateResult = this.filter(Pred.greater(key, (JSONVal) val));
-  //   * @pre otherVal and val have the same type
-  //   */
-  //  public static <T> Predicate<T> equal(final T obj1)
-  //  {
-  //    return new Predicate<T>()
-  //      {
-  //        @Override
-  //        public boolean test(T val)
-  //        {
-  //          return obj1.equals(val);
-  //        }// test
-  //      };// new Predicate(T)
-  //  }// equal(T,T);
-  //
-  //  /**
-  //   *  Val predicate
-  //   */
-  //  public static <T> Predicate<T> eqVal(final JSONObject obj, final String key)
-  //  {
-  //    return new Predicate<T>()
-  //      {
-  //        @Override
-  //        public boolean test(T val)
-  //        {
-  //          // Find the matching key in the object and get its value.
-  //          // Then compare it to the parameter
-  //          return obj.get(key).compareTo(val) == 0;
-  //        }// test
-  //      };// new Predicate(T)
-  //  }//eqVal
-
   /**
    *  Determine whether given key has given value
    *  
@@ -159,85 +124,52 @@ public class Pred
   }//equal(String, JSONVal)
 
   /**
-   * Greater 
+   *  Determine whether given key has value greater than given
+   *  
+   *  @param key
+   *  @param value
+   *  @pre the parameter object of the returned Predicate must be a JSONObject           
+   *  @pre key must be in the parameter object
+   *  @post val is unchanged
+   *  @return true if the value of the key in the object is greater than given value
+   *  @return false otherwise
    */
   public static <T> Predicate<T> greater(final String key, final JSONVal value)
   {
     return new Predicate<T>()
+      {
+        @Override
+        public boolean test(T object)
         {
-          @Override
-          public boolean test(T object)
-          {
-            JSONVal temp = ((JSONObject) object).get(key);
-            System.out.println("object greater is " + temp.toString());
-            if (temp.isNumber())
-              return ((JSONNumber)temp).compareTo(value) > 0;
-            return ((temp != null) && (temp.compareTo(value) > 0));
-            //return value.compareTo(((JSONObject) object).get(key)) > 0;
-          }// test
-        };// new Predicate(T)
+          JSONVal temp = ((JSONObject) object).get(key);
+          return ((temp != null) && (temp.compareTo(value) > 0));
+        }// test
+      };// new Predicate(T)
   }//greater(String, JSONVal)
-  
+
   /**
-   * Smaller
+   *  Determine whether given key has value smaller than given
+   *  
+   *  @param key
+   *  @param value
+   *  @pre the parameter object of the returned Predicate must be a JSONObject           
+   *  @pre key must be in the parameter object
+   *  @post val is unchanged
+   *  @return true if the value of the key in the object is smaller than given value
+   *  @return false otherwise
    */
   public static <T> Predicate<T> smaller(final String key, final JSONVal value)
   {
     return new Predicate<T>()
+      {
+        @Override
+        public boolean test(T object)
         {
-          @Override
-          public boolean test(T object)
-          {
-            JSONVal temp = ((JSONObject) object).get(key);
-            if (temp.isNumber())
-              {
-                try
-                  {
-                    return ((JSONNumber)temp).compareTo(new BigDecimal(value.toString()))  < 0;
-                  }
-                catch (Exception e)
-                  {
-                    return false;
-                  }
-              }// if number
-            return ((temp != null) && (temp.compareTo(value) < 0));
-          }// test
-        };// new Predicate(T)
+          JSONVal temp = ((JSONObject) object).get(key);
+          return ((temp != null) && (temp.compareTo(value) < 0));
+        }// test
+      };// new Predicate(T)
   }//smaller(String, JSONVal)
-  /**
-   * Greater with comparators
-   * @param obj
-   * @param order
-   * @return
-   */
-  public static <T> Predicate<T>
-    greater(final T obj, final Comparator<T> order)
-  {
-    return new Predicate<T>()
-      {
-        @Override
-        public boolean test(T val)
-        {
-          return order.compare(val, obj) > 0;
-        }// test
-      };// new Predicate(T)
-  }// greater(T, Comparator<T>)
-
-  /**
-   * Greater
-   */
-  public static <T> Predicate<T>
-    smaller(final T obj, final Comparator<T> order)
-  {
-    return new Predicate<T>()
-      {
-        @Override
-        public boolean test(T val)
-        {
-          return order.compare(val, obj) < 0;
-        }// test
-      };// new Predicate(T)
-  }// smaller(T, Comparator<T>);
 
   /**
    * Convert a predicate that works on a superclass to a predicate that works on

@@ -1,17 +1,16 @@
 /**
- *  A class for representing numbers in JSON
+ * A class for representing numbers in JSON
+ * 
+ * @author Graeme Boy, Vasilisa Bashlovkina
+ * @created April 23, 2014
  */
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class JSONNumber
-    extends
-      JSONVal
+    extends JSONVal
 {
-  // Started saving number as a string for convenience.
-  // Now I think it's a good idea, actually. Parse on get?
-  // We probably ought to do them all as strings. Except arrays...
+
   // +--------+----------------------------------------------------------
   // | Fields |
   // +--------+
@@ -41,9 +40,9 @@ public class JSONNumber
    *      consist entirely of digits otherwise
    * 
    */
-  public JSONNumber (String number, boolean decimal)
+  public JSONNumber(String number, boolean decimal)
   {
-    this.number = number.trim ();
+    this.number = number.trim();
     this.isDecimal = decimal;
   } // JSONNumber(String, boolean)
 
@@ -55,7 +54,7 @@ public class JSONNumber
    *      other than 0, contain a single decimal point or no decimal point and
    *      consist entirely of digits otherwise
    */
-  public JSONNumber (String num)
+  public JSONNumber(String num)
   {
     this.number = num;
     this.isDecimal = false;
@@ -70,18 +69,17 @@ public class JSONNumber
    * @throws Exception
    *           if the number isn't correctly formatted
    */
-  public BigDecimal
-    get ()
-      throws Exception
+  public BigDecimal get()
+    throws Exception
   {
     try
       {
-        BigDecimal value = new BigDecimal (this.number);
+        BigDecimal value = new BigDecimal(this.number);
         return value;
       }// try
     catch (Exception e)
       {
-        throw new Exception ("Incorrect formatting of number" + this.number);
+        throw new Exception("Incorrect formatting of number" + this.number);
       }// catch
   }// get()
 
@@ -91,48 +89,34 @@ public class JSONNumber
    * @throws Exception
    *           if the number isn't correctly formatted
    */
-  public BigInteger
-    getBigInteger ()
-      throws Exception
+  public BigInteger getBigInteger()
+    throws Exception
   {
     try
       {
-        BigInteger value = new BigInteger (this.number);
+        BigInteger value = new BigInteger(this.number);
         return value;
       }// try
     catch (Exception e)
       {
-        throw new Exception ("Incorrect formatting of number" + this.number);
+        throw new Exception("Incorrect formatting of number" + this.number);
       }// catch
   }// getBigInteger()
 
   /**
-   * DO WE NEED THIS function isDecimal
-   * 
-   * @return boolean, whether decimal
-   */
-  public boolean
-    isDecimal ()
-  {
-    return isDecimal;
-  }
-
-  /**
-   * function getInteger
+   * Get the value of this number in int form
    * 
    * @return integer value of number
    */
-  public int
-    getInteger ()
+  public int getInteger()
   {
-    return Integer.parseInt (this.number);
-  }
+    return Integer.parseInt(this.number);
+  }// getInteger()
 
   /**
    * Get the string representing this number
    */
-  public String
-    toString ()
+  public String toString()
   {
     return this.number;
   }// toString()
@@ -140,13 +124,12 @@ public class JSONNumber
   /**
    * Get the type of the JSONNumber
    * 
-   * @return "Number"
+   * @return true
    */
-  public boolean
-    isNumber ()
+  public boolean isNumber()
   {
     return true;
-  } // type()
+  } // isNumber()
 
   /**
    * Compare this number to another
@@ -158,12 +141,10 @@ public class JSONNumber
    * @return an int i < 0 if this < val
    * @throws Exception
    */
-  public <T>
-    int
-    compareTo (BigDecimal val)
-      throws Exception
+  public <T> int compareTo(T val)
   {
-    return get ().compareTo (val);
-  }// compareTo(BigDecimal)
+    return (new BigDecimal(this.number)).compareTo(new BigDecimal(
+                                                                  val.toString()));
+  }//compareTo (T)
 
 }// JSONNumber class

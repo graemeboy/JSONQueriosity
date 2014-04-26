@@ -1,3 +1,11 @@
+/**
+ * A class for JSON constants - null, true and false
+ * 
+ * @author Graeme Boy, Vasilisa Bashlovkina
+ * @created April 23, 2014
+ * 
+ */
+
 public class JSONConstant
     extends JSONVal
 {

@@ -4,7 +4,11 @@ import org.junit.Test;
 
 /**
  * A set of simple unit tests for JSONDecode
+ *
+ * @author Graeme Boy, Vasilisa Bashlovkina
+ * @created April 23, 2014
  */
+
 public class DecoderTest
 {
 

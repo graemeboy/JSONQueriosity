@@ -1,22 +1,15 @@
+/**
+ * A general class for JSON values. All other JSON classes extend it.
+ * 
+ * @author Graeme Boy, Vasilisa Bashlovkina
+ * @created April 23, 2014
+ */
 public class JSONVal
 {
 
-  // return the type
-  // public String
-  // toString ();
-  //
-  // public Object
-  // get ();
-  //
-  // public String
-  // type (); // is this necessary?
-
-  
-
-  /*
-   * Add some boolean methods that will be used by the classes that extend this
-   * one.
-   */
+  // +------------------+---------------------------------------------------------
+  // | Observer Methods |
+  // +------------------+
 
   public boolean isNumber()
   {
@@ -43,20 +36,26 @@ public class JSONVal
     return false;
   } // isConstant()
 
+  /**
+   * Compare this to another JSONValue.
+   * 
+   * The default comparison is comparing the two values converted to strings.
+   * @param val,  a JSONValue
+   */
   public <T> int compareTo(T val)
   {
     return this.toString().compareTo(val.toString());
-  }
+  }// compareTo(T0
 
+  /**
+   * Get the actual value of this
+   * @return
+   * @throws Exception
+   */
   public Object get()
     throws Exception
   {
     return null;
-  }
+  }// get()
 
-  public Object type()
-  {
-    return null;
-  }
-
-}
+}// JSONVal class

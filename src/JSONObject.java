@@ -1,3 +1,9 @@
+/**
+ * A class that represents JSON objects using ArrayLists
+ * 
+ * @author Graeme Boy, Vasilisa Bashlovkina
+ * @created April 23, 2014
+ */
 import java.util.ArrayList;
 
 public class JSONObject
