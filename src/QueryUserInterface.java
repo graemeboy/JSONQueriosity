@@ -40,7 +40,7 @@ public class QueryUserInterface
                 this.pen.println (result);
               }
           }
-        catch (IOException e)
+        catch (Exception e)
           {
             this.pen.println ("There seems to have been an error. Please try restarting the interface.");
           } // while
