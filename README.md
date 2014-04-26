@@ -9,8 +9,8 @@ JSONLibrary contains a small querying language, similar to SQL. This is how it c
 
 Say we have a small dataset in our JSON String, e.g.:
 
-```java
-String eduInstitutions = "{
+```javascript
+{
     "schools": [
         {
             "name": "Grinnell College",
@@ -61,9 +61,9 @@ String eduInstitutions = "{
             "ivyLeague": true
         },
     ]
-}";
+}
 ```
-        
+
 Instantiate the decoder, and decode the String:
 
 ```java
