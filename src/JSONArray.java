@@ -187,6 +187,7 @@ public class JSONArray
    * @param val what we are comparing to
    * @return
    */
+  @SuppressWarnings("unchecked")
   public <T>
     ArrayList<T>
     select (String returnKey, String comparison, String key, T val)
