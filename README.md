@@ -1,11 +1,11 @@
-JSONLibrary
+Queriosity: A JSON Querying Library
 ===========
 
-A Java library for encoding and decoding JSON structures. It is robust, can work with formatted JSON Strings (which include spaces, tabs, and newline characters), and has a small querying language built in!
+Large datasets are now being rendered into JSON format, which can provide an alternative to traditional databases. Our library can read in formatted and unformatted JSON structures from files or system input, and parse them into a JSON class that users can then query using a built-in querying language.
 
 JSON Querying Language
 ----------------------
-JSONLibrary contains a small querying language, similar to SQL. This is how it can be used.
+JSONLibrary contains a small querying language, similar to SQL. Below is an example of how querying works using Queriosity.
 
 Say we have a small dataset in our JSON String, e.g.:
 
