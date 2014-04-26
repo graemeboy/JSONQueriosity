@@ -5,7 +5,7 @@ Large datasets are now being rendered into JSON format, which can provide an alt
 
 JSON Querying Language
 ----------------------
-JSONLibrary contains a small querying language, similar to SQL. This is how it can be used.
+JSONLibrary contains a small querying language, similar to SQL. Below is an example of how querying works using Queriosity.
 
 Say we have a small dataset in our JSON String, e.g.:
 
