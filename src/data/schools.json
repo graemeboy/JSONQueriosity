@@ -3,63 +3,74 @@
         {
             "name": "Grinnell College",
             "type": "Liberal Arts",
-            "numStudents": 1655
+            "numStudents": 1655,
+            "ivyLeage": false
         },
         {
             "name": "Carlton College",
             "type": "Liberal Arts",
-            "numStudents": 2018
+            "numStudents": 2018,
+            "ivyLeage": false
         },
         {
             "name": "Vassar College",
             "type": "Liberal Arts",
-            "numStudents": 2477
+            "numStudents": 2477,
+            "ivyLeage": false
         },
         {
             "name": "Middlebury College",
             "type": "Liberal Arts",
-            "numStudents": 2499
+            "numStudents": 2499,
+            "ivyLeage": false
         },
         {
             "name": "Wesleyan University",
             "type": "Liberal Arts",
-            "numStudents": 3262
+            "numStudents": 3262,
+            "ivyLeage": false
         },
         {
             "name": "Harvard University",
             "type": "University",
-            "numStudents": 28147
+            "numStudents": 28147,
+            "ivyLeague": true
         },
         {
             "name": "Stanford University",
             "type": "University",
-            "numStudents": 15877
+            "numStudents": 15877,
+            "ivyLeage": false
         },
         {
             "name": "University of Chicago",
             "type": "University",
-            "numStudents": 15245
+            "numStudents": 15245,
+            "ivyLeage": false
         },
         {
             "name": "University of Iowa",
             "type": "University",
-            "numStudents": 31065
+            "numStudents": 31065,
+            "ivyLeage": false
         },
         {
             "name": "Cornell University",
             "type": "University",
-            "numStudents": 21000
+            "numStudents": 21000,
+            "ivyLeague": true
         },
-    // to do
         {
             "name": "Swarthmore College",
             "type": "Liberal Arts",
-            "numStudents": 1534
+            "numStudents": 1534,
+            "ivyLeage": false
         },
         {
             "name": "Williams College",
             "type": "Liberal Arts",
-            "numStudents": 2052
+            "numStudents": 2052,
+            "ivyLeage": false
         },
         {
             "name": "University of Minnesota",
@@ -121,5 +132,23 @@
             "numStudents": 2801,
             "ivyLeague": false
         },
+        {
+            "name": "Princeton University",
+            "type": "University",
+            "numStudents": 8014,
+            "ivyLeague": true
+        },
+        {
+            "name": "Columbia University",
+            "type": "University",
+            "numStudents": 29250,
+            "ivyLeague": true
+        },
+        {
+            "name": "Yale University",
+            "type": "University",
+            "numStudents": 11880,
+            "ivyLeague": true
+        }
 ]
 }

@@ -277,7 +277,7 @@ public class JSONDecoder
 
         int i = 7;
         
-        String temp;
+        String temp = "";
         String val;
         
         // 'Liberal Arts' => args[7] = 'Liberal, args[8] = Arts'
@@ -293,7 +293,8 @@ public class JSONDecoder
             // val variable.
             // Each time we do this, we must add the word, without the quotation
             // mark, to val.
-            while ((temp = args[++i]).charAt (temp.length () - 1) != '\'')
+            
+            while ((++i < args.length) && (temp = args[i]).charAt (temp.length () - 1) != '\'')
               {
                 // Concatenate the values, and add a space, because they are
                 // seperate words.
