@@ -137,12 +137,12 @@ Which returns:
 
 Accessing the Raw Objects
 --------------------------
-Create an object that we can use to query with
+Another need while querying the dataset might be to access the entire object that fits your conditions. For this, we have a where(), whereLess(), and whereGreater() methods. whereLess() and whereGreater() are designed to compare integers.
+
+To use this functionality, create an object that we can use to query with
 ```java
 JSONObject queryObj = queryDecoder.jsonDecode ();
 ```
-
-Query using "get()", "where", "whereLess", and "whereGreater". whereLess and whereGreater are designed to comapre integers.
 
 ### E.g. 1 Query all of the liberal arts colleges
 
