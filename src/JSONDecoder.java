@@ -264,9 +264,10 @@ public class JSONDecoder
    * 
    * @param queryIn
    * @return
+   * @throws Exception 
    */
   public String
-    query (String queryIn)
+    query (String queryIn) throws Exception
   {
 
     // ((JSONArray)queryObj.get("schools")).select("name", "equals", "type",
@@ -309,7 +310,7 @@ public class JSONDecoder
             val = args[7];
           }
         
-//        System.out.println("Val: " + val + " and comparator is " + args[6]);
+        // System.out.println("Val: " + val + " and comparator is " + args[6]);
         JSONVal unknown;
         if (val.equals("null") || val.equals("true") || val.equals("false"))
             unknown = new JSONConstant(val.charAt(0));

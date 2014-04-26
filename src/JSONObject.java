@@ -95,10 +95,10 @@ public class JSONObject
     return "[Object]";
   }
 
-  public String
-    type ()
+  public boolean
+    isObject ()
   {
-    return "Object";
+    return true;
   } // type()
 
   public <T>

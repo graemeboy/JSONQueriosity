@@ -207,15 +207,14 @@ public class JSONArray
     for (int i = 0; i < this.size (); i++)
       {
         // For each object
-        if (this.array.get (i).type ().equals ("Object")
+        if (this.array.get (i).isObject()
             && (valToCompare = (tempObj = ((JSONObject) this.array.get (i))).get (key)) != null)
           {
-
-            if (valToCompare.type ().equals ("Number"))
+            if (valToCompare.isNumber())
               {
                 compResult = ((JSONNumber) valToCompare).compareTo (Integer.parseInt (val.toString ()));
               } // if
-            else if (valToCompare.type ().equals ("Constant"))
+            else if (valToCompare.isConstant())
               {
                 compResult = ((JSONConstant) valToCompare).compareTo (val);
               } // else if
