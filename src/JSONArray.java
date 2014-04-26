@@ -12,15 +12,34 @@ import java.util.Iterator;
 public class JSONArray
     extends JSONVal
 {
-  // Make an arraylist of JSONVals
+  // +--------+----------------------------------------------------------
+  // | Fields |
+  // +--------+
 
+  /**
+   * The actual array
+   */
   ArrayList<JSONVal> array;
 
+  // +--------------+----------------------------------------------------
+  // | Constructors |
+  // +--------------+
+  /**
+   * Make an empty JSONArray
+   */
   public JSONArray()
   {
     this.array = new ArrayList<JSONVal>();
   } // JSONArray(String)
 
+  // +------------------+----------------------------------------------------
+  // | Standard methods |
+  // +------------------+
+  
+  /**
+   *  Add a JSONVal to the 
+   * @param valIn
+   */
   public void add(JSONVal valIn)
   {
     this.array.add(valIn);
@@ -80,38 +99,47 @@ public class JSONArray
           } // if
       } // for
     return results;
-  } // where
-
+  } // where(String, T)
+  
+  /**
+   * Function where, returns and array list of all of the objects within this
+   * JSONArray where the value of the key is smaller that int
+   * 
+   * @param key
+   * @param val
+   * @return
+   */
   public <T> ArrayList whereLess(String key, int maxCompare)
   {
     ArrayList<JSONObject> results = new ArrayList();
     // I will make this more readable than where, by using more fields.
     JSONObject tempObj;
     JSONNumber tempNum;
-    // Needs to be an array of objects
-    // for (int i = 0; i < this.size (); i++)
-    // {
-    // // For each object
-    // if (this.array.get (i).type ().compareTo ("Object") == 0)
-    // {
-    // // This object has the correct key
-    // tempObj = (JSONObject) this.array.get (i);
-    // tempNum = (JSONNumber) tempObj.get (key);
-    // if (tempNum.lessThan (maxCompare))
-    // {
-    // // The object has a key-value pair that matches
-    // results.add (tempObj);
-    // } // if
-    // } // if
-    // } // for
+    //Needs to be an array of objects
+    for (int i = 0; i < this.size(); i++)
+      {
+        // For each object
+        if (this.array.get(i).isObject())
+          {
+            // This object has the correct key
+            tempObj = (JSONObject) this.array.get(i);
+            tempNum = (JSONNumber) tempObj.get(key);
+            if (tempNum.compareTo(maxCompare) < 0)
+              {
+                // The object has a key-value pair that matches
+                results.add(tempObj);
+              } // if
+          } // if
+      } // for
     return results;
   } // where
 
   /**
-   * function whereGreater
+   * Function where, returns and array list of all of the objects within this
+   * JSONArray where the value of the key is greater that int
    * 
    * @param key
-   * @param maxCompare
+   * @param val
    * @return
    */
   public <T> ArrayList whereGreater(String key, int maxCompare)
@@ -121,22 +149,22 @@ public class JSONArray
     // I will make this more readable than where, by using more fields.
     JSONObject tempObj;
     JSONNumber tempNum;
-    // Needs to be an array of objects
-    // for (int i = 0; i < this.size (); i++)
-    // {
-    // // For each object
-    // if (this.array.get (i).type ().compareTo ("Object") == 0)
-    // {
-    // // This object has the correct key
-    // tempObj = (JSONObject) this.array.get (i);
-    // tempNum = (JSONNumber) tempObj.get (key);
-    // if (tempNum.greaterThan (maxCompare))
-    // {
-    // // The object has a key-value pair that matches
-    // results.add (tempObj);
-    // } // if
-    // } // if
-    // } // for
+    //Needs to be an array of objects
+    for (int i = 0; i < this.size(); i++)
+      {
+        // For each object
+        if (this.array.get(i).isObject())
+          {
+            // This object has the correct key
+            tempObj = (JSONObject) this.array.get(i);
+            tempNum = (JSONNumber) tempObj.get(key);
+            if (tempNum.compareTo(maxCompare) > 0)
+              {
+                // The object has a key-value pair that matches
+                results.add(tempObj);
+              } // if
+          } // if
+      } // for
     return results;
   } // where
 
@@ -169,10 +197,90 @@ public class JSONArray
   public Iterator iterator()
   {
     return this.array.iterator();
-  }// iterator
+  }// iterator()
+
+  
+  /**
+   * Make an array of values of the returnKey for each JSONObject
+   * in the array that satisfies the comparison between the value 
+   * of the key parameter and the parameter val
+   * 
+   * @param returnKey, its value might be in the returned array 
+   * @param comparison, indicates how val and the value of key will be compared
+   * @param key, the key whose value gets compared
+   * @param val
+   * @pre comparison must be "=", "<" or ">"
+   * @both key and returnKey must be in each member-object
+   * @return an array of values of the returnKey for objects that satisfy the
+   *         comparison
+   * @throws Exception
+   */
+  public ArrayList<JSONVal> selectFilter(String returnKey, String comparison,
+                                         String key, JSONVal val)
+    throws Exception
+  {
+    // Make a new list where values will be put
+    JSONArray intermediateResult = new JSONArray();
+    char comparChar = comparison.charAt(0);
+    // Filter the this into the array
+    switch (comparChar)
+      {
+        case '=':
+          intermediateResult = this.filter(Pred.equal(key, val));
+          break;
+        case '>':
+          intermediateResult = this.filter(Pred.greater(key, val));
+          break;
+        case '<':
+          intermediateResult = this.filter(Pred.smaller(key, val));
+          break;
+        default:
+          throw new Exception(
+                              "Incorrectly formatted input: expected =, > or <, given "
+                                  + comparison);
+      }// switch
+
+    Iterator it = intermediateResult.iterator();
+    ArrayList<JSONVal> result = new ArrayList<>();
+    // Extract the values of the returnKey from the filtered array
+    while (it.hasNext())
+      {
+        result.add(((JSONObject) (it.next())).get(returnKey));
+      }// while hasNext
+    return result;
+  }// selsectFilter(String, String, String, T)
 
   /**
-   * function Select, returns the value of a given key, if it satisfies a
+   * Get the element at position i
+   * 
+   * @param i
+   * @pre i < this.size()
+   * @return the JSONVal at position i
+   */
+  public JSONVal get(int i)
+  {
+    return this.array.get(i);
+  }// get(int)
+
+  public boolean isArray()
+  {
+    return true;
+  } // isArray()
+  
+/**
+ * Comapre this to another JSONArray
+ * @param val
+ * @return
+ */
+  public int compareTo(JSONArray val)
+  {
+    // Return 0 if String representation of JSONArray is the same.
+    return (this.array.toString().compareTo(val.toString()));
+  } // compareTo()
+  
+  /**
+   * This function is not used because it is duplicated by selctFilter
+   *  Select, returns the value of a given key, if it satisfies a
    * comparison. E.g. select("name", "equals", "Graeme") would return my name in
    * an ArrayList of people with those keys.
    * 
@@ -226,77 +334,6 @@ public class JSONArray
           } // if
       } // for
     return results;
-  }
+  } // select
 
-  /**
-   * Make an array of values of the returnKey for each JSONObject
-   * in the array that satisfies the comparison between the value 
-   * of the key parameter and the parameter val
-   * 
-   * @param returnKey, its value might be in the returned array 
-   * @param comparison, indicates how val and the value of key will be compared
-   * @param key, the key whose value gets compared
-   * @param val
-   * @pre comparison must be "=", "<" or ">"
-   * @both key and returnKey must be in each member-object
-   * @return an array of values of the returnKey for objects that satisfy the
-   *         comparison
-   * @throws Exception
-   */
-  public ArrayList<JSONVal> selectFilter(String returnKey, String comparison,
-                                         String key, JSONVal val)
-    throws Exception
-  {
-    // Make a new list where values will be put
-    JSONArray intermediateResult = new JSONArray();
-    char comparChar = comparison.charAt(0);
-    // Filter the this into the array
-    switch (comparChar)
-      {
-        case '=':
-          intermediateResult = this.filter(Pred.equal(key, val));
-          break;
-        case '>':
-          intermediateResult = this.filter(Pred.greater(key, val));
-          break;
-        case '<':
-          intermediateResult = this.filter(Pred.smaller(key, val));
-          break;
-        default:
-          throw new Exception(
-                              "Incorrectly formatted input: expected =, > or <, given "
-                                  + comparison);
-      }// switch
-
-    Iterator it = intermediateResult.iterator();
-    ArrayList<JSONVal> result = new ArrayList<>();
-    // Extract the values of the returnKey from the filtered array
-    while (it.hasNext())
-      {
-        result.add(((JSONObject) (it.next())).get(returnKey));
-      }// while hasNext
-    return result;
-  }// selsectFilter(String, String, String, T)
-
-  /**
-   * Returns the element at i
-   * 
-   * @param i
-   * @return
-   */
-  public JSONVal get(int i)
-  {
-    return this.array.get(i);
-  }
-
-  public boolean isConstant()
-  {
-    return true;
-  } // type()
-
-  public int compareTo(JSONArray val)
-  {
-    // Return 0 if String representation of JSONArray is the same.
-    return (this.array.toString().compareTo(val.toString()));
-  } // compareTo()
-}
+}// JSONArray class

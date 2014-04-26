@@ -8,11 +8,17 @@
  */
 public class JSONDecoder
 {
+//+--------+----------------------------------------------------------
+ // | Fields |
+ // +--------+
   String jsonString;
   int i;
   JSONObject obj;
 
-  // Constructor
+
+  // +--------------+----------------------------------------------------
+  // | Constructors |
+  // +--------------+
   public JSONDecoder(String stringIn)
   {
     this.i = 0;

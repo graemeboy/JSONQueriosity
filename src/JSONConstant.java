@@ -9,10 +9,25 @@
 public class JSONConstant
     extends JSONVal
 {
+  // +--------+----------------------------------------------------------
+  // | Fields |
+  // +--------+
+  /**
+   * Flag for true
+   */
+  boolean isTrue;
+  /**
+   * Flag that is set if this is null
+   */
+  boolean isNull;
 
-  boolean isTrue = false;
-  boolean isNull = false;
-
+  // +--------------+----------------------------------------------------
+  // | Constructors |
+  // +--------------+
+  /**
+   * Make a new constant based on the first char of specialIn
+   * @param specialIn
+   */
   public JSONConstant(char specialIn)
   {
     if (specialIn == 't')
@@ -65,8 +80,7 @@ public class JSONConstant
   public <T> int compareTo(T val)
   {
     // This is somewhat awkward to do.
-    return val.toString().
-        compareTo(this.toString());
+    return val.toString().compareTo(this.toString());
     //    if ((val.equals ("true") && this.isTrue && this.isNull == false)
     //        || (val.equals ("false") && this.isTrue == false && this.isNull == false)
     //        || (val.equals ("null") && this.isNull))
