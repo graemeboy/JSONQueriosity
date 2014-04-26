@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintWriter;
 
 /*
@@ -12,7 +15,19 @@ public class JSONExpt
     PrintWriter pen = new PrintWriter (System.out, true);
 
     // Queries
- // Queries
+    File file = new File("data/schools.json");
+    try
+      {
+        FileReader fr = new FileReader (file);
+        
+        
+      }
+    catch (FileNotFoundException e)
+      {
+        e.printStackTrace();
+      }
+    
+    // Queries
     pen.println("** Experimenting with Query Language ** \n");
     String queryJSON = "{ \"schools\": [ { \"name\" : \"Grinnell College\", \"type\": \"Liberal Arts\", \"numStudents\": 1655 } ,"
         + "{ \"name\" : \"Carlton College\", \"type\": \"Liberal Arts\", \"numStudents\": 2018 }, "
