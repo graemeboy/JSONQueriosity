@@ -1,4 +1,4 @@
-JSONLibrary
+Queriosity – The JSON Querying Library
 ===========
 
 A Java library for encoding and decoding JSON structures. It is robust, can work with formatted JSON Strings (which include spaces, tabs, and newline characters), and has a small querying language built in!
