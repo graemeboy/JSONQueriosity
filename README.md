@@ -53,7 +53,13 @@ String eduInstitutions = "{
             "type": "University",
             "numStudents": 15877,
             "ivyLeague": false
-        }
+        },
+        {
+            "name": "Cornell University",
+            "type": "University",
+            "numStudents": 21000,
+            "ivyLeague": true
+        },
     ]
 }";
 ```
@@ -82,6 +88,24 @@ You can also use comparitors, e.g.:
 ```java
 queryDecoder.query("select name from schools where numStudents < 5000");
 ```
+
+Which returns:
+
+```javascript
+[Grinnell College, Carlton College, Vassar College, Middlebury College, Wesleyan University]
+```javascript
+
+Finally, you can also use constant, e.g., remind yourself whether Cornell is in the Ivy League
+
+```java
+queryDecoder.query("select name from schools where numStudents < 5000");
+```
+
+Which returns:
+
+```javascript
+[true]
+```javascript
 
 Accessing the Raw Objects
 --------------------------
