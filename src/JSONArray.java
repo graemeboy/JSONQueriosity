@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class JSONArray
     extends
@@ -143,6 +144,36 @@ public class JSONArray
     return results;
   } // where
 
+  /**
+   * Make an array of JSONVals for which the predicate holds
+   * 
+   * @param key
+   * @param maxCompare
+   * @return
+   */
+  public <T> JSONArray filter(Predicate<T> pred)
+  {
+    // Make an array where objects that pass the predicate will be placed
+    JSONArray result = new JSONArray();
+    // Make a filtered iterator for this 
+    FilteredIterator<JSONVal> it = new FilteredIterator(this.iterator(), pred);
+    // Go through this JSONArray and add elements that pass
+    while (it.hasNext())
+      {
+        result.add(it.next());
+      }// while hasNext
+    return result;
+  }// filter
+  
+  /**
+   * Make an iterator 
+   * 
+   * @return an iterator of this.array 
+   */
+  public Iterator iterator()
+  {
+    return this.array.iterator();
+  }// iterator
   /**
    * function Select, returns the value of a given key, if it satisfies a
    * comparison. E.g. select("name", "equals", "Graeme") would return my name in
