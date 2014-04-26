@@ -264,9 +264,10 @@ public class JSONDecoder
    * 
    * @param queryIn
    * @return
+   * @throws Exception 
    */
   public String
-    query (String queryIn)
+    query (String queryIn) throws Exception
   {
 
     // ((JSONArray)queryObj.get("schools")).select("name", "equals", "type",
@@ -318,7 +319,7 @@ public class JSONDecoder
         else 
           unknown = new JSONNumber(val);
         
-        return ((JSONArray) this.obj.get (args[3])).select (args[1], args[6], args[5], unknown).toString ();
+        return ((JSONArray) this.obj.get (args[3])).selectFilter (args[1], args[6], args[5], unknown).toString ();
       } // if
 
     return "No results";

@@ -32,16 +32,16 @@ public class JSONExpt
         JSONDecoder queryDecoder = new JSONDecoder (jsonContent);
         JSONObject queryObj = queryDecoder.jsonDecode ();
 
-        // Let's do some querying on the dataset.
-        pen.println ("* Experimenting with the Query Language\n");
-        // How many people go to each of the liberal arts colleges?
-        String q1 = ("select numStudents from schools where type = 'Liberal Arts'");
-        pen.println ("Query 1: " + q1);
-        pen.println ("Result: " + queryDecoder.query (q1));
-        // Which schools are attended by fewer than 2000 students?
-        String q2 = ("select name from schools where numStudents < 2000");
-        pen.println ("Query 2: " + q2);
-        pen.println ("Result: " + queryDecoder.query (q2));
+//        // Let's do some querying on the dataset.
+//        pen.println ("* Experimenting with the Query Language\n");
+//        // How many people go to each of the liberal arts colleges?
+//        String q1 = ("select numStudents from schools where type = 'Liberal Arts'");
+//        pen.println ("Query 1: " + q1);
+//        pen.println ("Result: " + queryDecoder.query (q1));
+//        // Which schools are attended by fewer than 2000 students?
+//        String q2 = ("select name from schools where numStudents < 2000");
+//        pen.println ("Query 2: " + q2);
+//        pen.println ("Result: " + queryDecoder.query (q2));
         // Which schools are part of the Ivy League?
         String q3 = ("select name from schools where ivyLeague = true");
         pen.println ("Query 3: " + q3);
