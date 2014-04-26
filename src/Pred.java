@@ -52,7 +52,7 @@ public class Pred
         public boolean test(T val)
         {
           return left.test(val) && right.test(val);
-        }// test(T)
+        }// test(T)intermediateResult = this.filter(Pred.greater(key, (JSONVal) val));
       }; // new Predicate<T>
   } // and(Predicate<T>, Predicate<T>)
 
@@ -99,7 +99,7 @@ public class Pred
   //  /**
   //   * Returns a predicate that holds if val is equal to otherVal
   //   * 
-  //   * @param otherVal
+  //   * @param otherValintermediateResult = this.filter(Pred.greater(key, (JSONVal) val));
   //   * @pre otherVal and val have the same type
   //   */
   //  public static <T> Predicate<T> equal(final T obj1)
@@ -157,7 +157,7 @@ public class Pred
   }//equal(String, JSONVal)
 
   /**
-   * Greater
+   * Greater 
    */
   public static <T> Predicate<T> greater(final String key, final JSONVal value)
   {
@@ -171,6 +171,20 @@ public class Pred
         };// new Predicate(T)
   }//greater(String, JSONVal)
   
+  /**
+   * Smaller
+   */
+  public static <T> Predicate<T> smaller(final String key, final JSONVal value)
+  {
+    return new Predicate<T>()
+        {
+          @Override
+          public boolean test(T object)
+          {
+            return value.compareTo(((JSONObject) object).get(key)) > 0;
+          }// test
+        };// new Predicate(T)
+  }//smaller(String, JSONVal)
   /**
    * Greater with comparators
    * @param obj
