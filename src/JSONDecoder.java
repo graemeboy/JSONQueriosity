@@ -310,9 +310,15 @@ public class JSONDecoder
           }
         
 //        System.out.println("Val: " + val + " and comparator is " + args[6]);
-        return ((JSONArray) this.obj.get (args[3])).selectFilter (args[1], args[6],
-                                                            args[5], val)
-                                                   .toString ();
+        JSONVal unknown;
+        if (val.equals("null") || val.equals("true") || val.equals("false"))
+            unknown = new JSONConstant(val.charAt(0));
+        else if (Character.isLetter(new Character(val.charAt(0))))
+            unknown = new JSONString(val);
+        else 
+          unknown = new JSONNumber(val);
+        
+        return ((JSONArray) this.obj.get (args[3])).select (args[1], args[6], args[5], unknown).toString ();
       } // if
 
     return "No results";

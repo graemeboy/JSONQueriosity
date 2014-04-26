@@ -236,16 +236,13 @@ public class JSONArray
   }
 
   /**
-   * Make an array of values of the returnKey for each JSONObject in the array
-   * that satisfies the comparison between the value of the key parameter and
-   * the parameter val
+   * Make an array of values of the returnKey for each JSONObject
+   * in the array that satisfies the comparison between the value 
+   * of the key parameter and the parameter val
    * 
-   * @param returnKey
-   *          , its value might be in the returned array
-   * @param comparison
-   *          , indicates how val and the value of key will be compared
-   * @param key
-   *          , the key whose value gets compared
+   * @param returnKey, its value might be in the returned array 
+   * @param comparison, indicates how val and the value of key will be compared
+   * @param key, the key whose value gets compared
    * @param val
    * @pre comparison must be "=", "<" or ">"
    * @both key and returnKey must be in each member-object
