@@ -98,7 +98,7 @@ Which returns:
 Finally, you can also use a constant (true, false, null), e.g., remind yourself whether Cornell is in the Ivy League
 
 ```java
-queryDecoder.query("select name from schools where numStudents < 5000");
+queryDecoder.query("select ivyLeague from schools where name = 'Cornell University'");
 ```
 
 Which returns:
